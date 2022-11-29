@@ -21,25 +21,25 @@ public class Task {
     public static int search704(int[] nums, int target) {
         int lp = 0;
         int rp = nums.length - 1;
-        int cp = rp;
-
-        while (true) {
+        int mp = rp;
+        while (lp <= rp) {
             if (target == nums[lp]) {
                 return lp;
             }
             if (target == nums[rp]) {
                 return rp;
             }
-
-            cp = (rp - lp) / 2;
-            if (target < nums[cp]) {
-                rp = cp;
-            } else {
-                lp = cp + 1;
+            mp = lp + (rp - lp)/2;
+            if (target == nums[mp]) {
+                return mp;
             }
-            if (cp == 0) {
-                return -1;
+            if (target > nums[mp]) {
+                lp = mp + 1;
+            }
+            if (target < nums[mp]) {
+                rp = mp - 1;
             }
         }
+        return -1;
     }
 }
