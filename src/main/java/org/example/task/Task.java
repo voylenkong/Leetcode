@@ -1,8 +1,11 @@
 package org.example.task;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Task {
 
-    //#344. Reverse String
+    //344. Reverse String
     public static String revertString344(String inputStr) {
         char[] charsStr = inputStr.toCharArray();
         int lenOfCharStr = charsStr.length - 1;
@@ -17,7 +20,7 @@ public class Task {
         return new String(charsStr);
     }
 
-    //#704. Binary Search
+    //704. Binary Search
     public static int search704(int[] nums, int target) {
         int lp = 0;
         int rp = nums.length - 1;
@@ -42,4 +45,22 @@ public class Task {
         }
         return -1;
     }
+
+    //412. Fizz Buzz
+    public static List<String> fizzBuzz412(int n) {
+        List<String> result = new ArrayList<>();
+        for (int i = 1; i <= n; i++) {
+            if (i % 15 == 0) {
+                result.add("FizzBuzz");
+            } else if (i % 3 == 0) {
+                result.add("Fizz");
+            } else if (i % 5 == 0) {
+                result.add("Buzz");
+            } else {
+                result.add(String.valueOf(i));
+            }
+        }
+        return result;
+    }
+
 }
