@@ -1,7 +1,9 @@
 package org.example.task;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 
 public class Task {
 
@@ -61,6 +63,49 @@ public class Task {
             }
         }
         return result;
+    }
+
+    //876. Middle of the Linked List
+    public static int middleNode876(List<Integer> head) {
+        int counter = 0;
+        Iterator<Integer> iterator = head.listIterator();
+        while (iterator.hasNext()) {
+            iterator.next();
+            counter++;
+        }
+        return counter/2;
+    }
+
+    //Bubble sort
+    public static int[] bubbleSort(int[] nums) {
+        int length = nums.length - 1;
+        int swap = 0;
+        for (int i = 0; i < length; i++) {
+            for (int j = 0; j < length - i; j++) {
+                if (nums[j] > nums[j + 1]) {
+                    swap = nums[j];
+                    nums[j] = nums[j + 1];
+                    nums[j + 1] = swap;
+                }
+            }
+
+        }
+        return nums;
+    }
+
+    //75. Sort Colors
+    public void sortColors75(int[] nums) {
+        int length = nums.length - 1;
+        int swap = 0;
+        for (int i = 0; i < length; i++) {
+            for (int j = 0; j < length - i; j++) {
+                if (nums[j] > nums[j + 1]) {
+                    swap = nums[j];
+                    nums[j] = nums[j + 1];
+                    nums[j + 1] = swap;
+                }
+            }
+        }
     }
 
 }
