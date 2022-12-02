@@ -8,16 +8,41 @@ import java.util.ListIterator;
 public class Task {
 
     //344. Reverse String
-    public static String revertString344(String inputStr) {
+    public static String reverseString344(String inputStr) {
         char[] charsStr = inputStr.toCharArray();
         int lenOfCharStr = charsStr.length - 1;
         char buf;
-        for (int j = lenOfCharStr, i = 0; j >= 0; j--, i++) {
-           if (i <= j) {
-               buf = charsStr[i];
-               charsStr[i] = charsStr[j];
-               charsStr[j] = buf;
-           }
+        for (int j = lenOfCharStr, i = 0; i <= j; j--, i++) {
+            buf = charsStr[i];
+            charsStr[i] = charsStr[j];
+            charsStr[j] = buf;
+        }
+        return new String(charsStr);
+    }
+
+    //541. Reverse String II
+    public static String reverseStr541(String s, int k) {
+        if (k > s.length()) {
+            k = s.length();
+        }
+        char[] charsStr = s.toCharArray();
+        int lenOfCharStr = charsStr.length;
+        char buf;
+
+        int startPosition = 0;
+        int endPosition = k - 1;
+
+        while (startPosition < lenOfCharStr) {
+            for (int j = endPosition, i = startPosition; i <= j; j--, i++) {
+                buf = charsStr[i];
+                charsStr[i] = charsStr[j];
+                charsStr[j] = buf;
+            }
+            startPosition = endPosition + 1 + k;
+            endPosition = endPosition + 2 * k;
+            if (endPosition > lenOfCharStr) {
+                endPosition = lenOfCharStr - 1;
+            }
         }
         return new String(charsStr);
     }
