@@ -119,7 +119,7 @@ public class Task {
     }
 
     //75. Sort Colors
-    public void sortColors75(int[] nums) {
+    public static void sortColors75(int[] nums) {
         int length = nums.length - 1;
         int swap = 0;
         for (int i = 0; i < length; i++) {
@@ -131,6 +131,42 @@ public class Task {
                 }
             }
         }
+    }
+
+    //443. String Compression
+    public static int compress443(String input) {
+        char[] chars = input.toCharArray();
+        int length = chars.length;
+        int result = 1;
+        for (int i = 1, count = 1, k = 0; i < length; i++) {
+            if (chars[i - 1] == chars[i]) {
+                count++;
+            } else {
+                chars[k] = chars[i - 1];
+                k++;
+                if (count != 1) {
+                    char[] countChars = Integer.toString(count).toCharArray();
+                    for (char countChar : countChars) {
+                        chars[k] = countChar;
+                        k++;
+                    }
+                }
+                count = 1;
+            }
+            if (i == length - 1) {
+                chars[k] = chars[i];
+                k++;
+                if (count != 1) {
+                    char[] countChars = Integer.toString(count).toCharArray();
+                    for (char countChar : countChars) {
+                        chars[k] = countChar;
+                        k++;
+                    }
+                }
+                result = k;
+            }
+        }
+        return result;
     }
 
 }
