@@ -179,7 +179,7 @@ public class Task {
             k /= 10;
             i--;
         }
-        
+
         int len1 = kNum.length - 1;
         int len2 = num.length - 1;
         int[] first;
