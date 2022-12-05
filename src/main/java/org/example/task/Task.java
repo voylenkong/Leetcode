@@ -1,6 +1,7 @@
 package org.example.task;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
@@ -167,6 +168,77 @@ public class Task {
             }
         }
         return result;
+    }
+
+    //989. Add to Array-Form of Integer
+    public static List<Integer> addToArrayForm(int[] num, int k) {
+        int[] kNum = new int[Integer.toString(k).length()];
+        int i = kNum.length - 1;
+        while (k > 0) {
+            kNum[i] = k % 10;
+            k /= 10;
+            i--;
+        }
+        
+        int len1 = kNum.length - 1;
+        int len2 = num.length - 1;
+        int[] first;
+        int[] second;
+        if (len1 >= len2) {
+            first = kNum;
+            second = num;
+        } else {
+            first = num;
+            second = kNum;
+        }
+        List<Integer> result = new ArrayList<Integer>();
+        int buf = 0;
+        int j = 0;
+        for (int a = first.length - 1, b = second.length - 1, curSum = 0; a >= 0; j++, a--, b--)
+        {
+            if (b >= 0) {
+                curSum = buf + first[a] + second[b];
+                if (curSum > 9) {
+                    result.add(j, curSum %= 10);
+                    buf = 1;
+                } else {
+                    result.add(j, curSum);
+                    buf = 0;
+                }
+            } else {
+                curSum = buf + first[a];
+                if (curSum > 9) {
+                    result.add(j, curSum %= 10);
+                    buf = 1;
+                } else {
+                    result.add(j, curSum);
+                    buf = 0;
+                }
+            }
+        }
+        if (buf == 1) {
+            result.add(j, buf);
+        }
+        Collections.reverse(result);
+        return result;
+    }
+
+
+    public static List<Integer> addToArrayForm2(int[] A, int K) {
+        int N = A.length;
+        int cur = K;
+        List<Integer> ans = new ArrayList();
+
+        int i = N;
+        while (--i >= 0 || cur > 0) {
+            if (i >= 0)
+                cur += A[i];
+            ans.add(cur % 10);
+            cur /= 10;
+        }
+
+        Collections.reverse(ans);
+        return ans;
     }
 
 }
