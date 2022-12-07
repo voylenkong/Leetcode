@@ -241,4 +241,25 @@ public class Task {
         return ans;
     }
 
+
+    //2108. Find First Palindromic String in the Array
+    public static String firstPalindrome2108(String[] words) {
+        boolean flag = false;
+        for (String w : words) {
+            char[] charW = w.toCharArray();
+            for (int i = 0, j = charW.length - 1; i <= j; i++, j--) {
+                if (charW[i] != charW[j]) {
+                    flag = false;
+                    break;
+                } else {
+                    flag = true;
+                }
+            }
+            if (flag) {
+                return w;
+            }
+        }
+        return "";
+    }
+
 }
