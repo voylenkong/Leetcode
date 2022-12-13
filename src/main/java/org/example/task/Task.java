@@ -2,9 +2,7 @@ package org.example.task;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 
 public class Task {
 
@@ -92,14 +90,22 @@ public class Task {
     }
 
     //876. Middle of the Linked List
-    public static int middleNode876(List<Integer> head) {
-        int counter = 0;
-        Iterator<Integer> iterator = head.listIterator();
-        while (iterator.hasNext()) {
-            iterator.next();
-            counter++;
+    public class ListNode {
+        int val;
+        ListNode next;
+        ListNode() {}
+        ListNode(int val) { this.val = val; }
+        ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+    }
+
+    public static ListNode middleNode876(ListNode head) {
+        ListNode fast = head;
+        ListNode slow = head;
+        while ((fast != null) && (fast.next != null)) {
+            fast = fast.next.next;
+            slow = slow.next;
         }
-        return counter/2;
+        return slow;
     }
 
     //Bubble sort
@@ -261,5 +267,65 @@ public class Task {
         }
         return "";
     }
+
+    //1929. Concatenation of Array
+    public static int[] getConcatenation1929(int[] nums) {
+        int numLength = nums.length;
+        int[] result = new int[numLength * 2];
+        for (int i = 0; i < numLength; i ++) {
+            result[i] = nums[i];
+            result[numLength + i] = nums[i];
+        }
+        return result;
+    }
+
+    //Sum digits into string
+    public static int sumDigits(String numStr) {
+        //int numLength = numStr.length();
+        char[] strArray = numStr.toCharArray();
+        int result = 0;
+        for (char elem : strArray) {
+            result += Character.getNumericValue(elem);
+            //result += elem - '0';
+        }
+        return result;
+    }
+
+    //1837. Sum of Digits in Base K
+    public static int sumBase1837(int n, int k) {
+        int result = 0;
+        int wp = n;
+        int rp = n;
+        while (wp >= k) {
+            rp = wp % k;
+            wp /= k;
+            result += rp;
+        }
+        result += wp;
+        return result;
+    }
+
+    //1945. Sum of Digits of String After Convert
+    public static int getLucky1945(String s, int k) {
+        char[] sChars = s.toCharArray();
+        int result = 0;
+        for (char ch : sChars) {
+            result += (ch - 96) % 10;
+            result += (ch - 96) / 10;
+        }
+        int wp = result;
+        while (k > 1) {
+            result = 0;
+            while (wp > 0) {
+                result += wp % 10;
+                wp /= 10;
+            }
+            wp = result;
+            k--;
+        }
+        return result;
+    }
+
+
 
 }
