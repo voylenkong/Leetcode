@@ -2,6 +2,7 @@ package org.example.task;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 
 public class Task {
@@ -325,6 +326,96 @@ public class Task {
         }
         return result;
     }
+
+    //26. Remove Duplicates from Sorted Array
+    public static int removeDuplicates26(int[] nums) {
+        int length = nums.length;
+        int k = 0;
+        int i = 1;
+        while (i < length) {
+            if (nums[i - 1] != nums[i]) {
+                nums[k] = nums[i - 1];
+                k++;
+            }
+            i++;
+        }
+        if (i == length) {
+            nums[k] = nums[i -1 ];
+            k++;
+        }
+        return k;
+    }
+
+    //2469. Convert the Temperature
+    public static double[] convertTemperature2469(double celsius) {
+        double[] result = new double[2];
+        result[0] = celsius + 273.15;
+        result[1] = celsius * 1.80 + 32.00;
+
+        return result;
+    }
+
+    //1108. Defanging an IP Address
+    public static String defangIPaddr1108(String address) {
+        return address.replace(".", "[.]");
+    }
+
+    //2235. Add Two Integers
+    public static int sum(int num1, int num2) {
+        return num1 + num2;
+    }
+
+    //1920. Build Array from Permutation
+    public static int[] buildArray1920(int[] nums) {
+/*        int[] ans = new int[nums.length];
+        for (int i = 0; i < nums.length; i++) {
+            ans[i] = nums[nums[i]];
+        }*/
+
+        for (int i = 0; i < nums.length; i++) {
+            nums[i] += (nums[nums[i]] & 1023) << 10;
+        }
+        for (int i = 0; i < nums.length; i++) {
+            nums[i] >>= 10;
+        }
+        return nums;
+    }
+
+    //387. First Unique Character in a String
+    public static int firstUniqChar387(String s) {
+        char[] sChar = s.toCharArray();
+        var resHashMap = new HashMap<Character, Integer>();
+        int count = 0;
+        for (char c : sChar) {
+            count = resHashMap.getOrDefault(c, 0);
+            count++;
+            resHashMap.put(c, count);
+        }
+        for (int i = 0; i < sChar.length; i++) {
+            if (resHashMap.get(sChar[i]) == 1) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

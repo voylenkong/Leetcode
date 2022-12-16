@@ -14,9 +14,10 @@ public class Run {
         //System.out.println(Task.addToArrayForm(new int[]{9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9}, 1));
         //System.out.println(Task.firstPalindrome2108(new String[]{"abc", "ee", "car", "ada","racecar", "cool"}));
         //System.out.println(Arrays.toString(Task.getConcatenation1929(new int[]{-1, 10, 5, 0})));
-        System.out.println(Task.getLucky1945("dbvmfhnttvr", 5));
-        System.out.println(Task.getLucky1945("qhquvppzooyt", 6));
+        //System.out.println(Arrays.toString((new int[]{0,2,1,5,3,4})));
+        //System.out.println(Arrays.toString(Task.buildArray1920(new int[]{0,2,1,5,3,4})));
 
+        System.out.println(Task.firstUniqChar387("aabb"));
 
     }
 }
