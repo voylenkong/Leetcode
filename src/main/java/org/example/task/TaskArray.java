@@ -1,11 +1,8 @@
 package org.example.task;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
-public class Task {
+public class TaskArray {
 
     //344. Reverse String
     public static String reverseString344(String inputStr) {
@@ -88,25 +85,6 @@ public class Task {
             }
         }
         return result;
-    }
-
-    //876. Middle of the Linked List
-    public class ListNode {
-        int val;
-        ListNode next;
-        ListNode() {}
-        ListNode(int val) { this.val = val; }
-        ListNode(int val, ListNode next) { this.val = val; this.next = next; }
-    }
-
-    public static ListNode middleNode876(ListNode head) {
-        ListNode fast = head;
-        ListNode slow = head;
-        while ((fast != null) && (fast.next != null)) {
-            fast = fast.next.next;
-            slow = slow.next;
-        }
-        return slow;
     }
 
     //Bubble sort
@@ -230,7 +208,6 @@ public class Task {
         return result;
     }
 
-
     public static List<Integer> addToArrayForm2(int[] A, int K) {
         int N = A.length;
         int cur = K;
@@ -282,7 +259,6 @@ public class Task {
 
     //Sum digits into string
     public static int sumDigits(String numStr) {
-        //int numLength = numStr.length();
         char[] strArray = numStr.toCharArray();
         int result = 0;
         for (char elem : strArray) {
@@ -346,25 +322,6 @@ public class Task {
         return k;
     }
 
-    //2469. Convert the Temperature
-    public static double[] convertTemperature2469(double celsius) {
-        double[] result = new double[2];
-        result[0] = celsius + 273.15;
-        result[1] = celsius * 1.80 + 32.00;
-
-        return result;
-    }
-
-    //1108. Defanging an IP Address
-    public static String defangIPaddr1108(String address) {
-        return address.replace(".", "[.]");
-    }
-
-    //2235. Add Two Integers
-    public static int sum(int num1, int num2) {
-        return num1 + num2;
-    }
-
     //1920. Build Array from Permutation
     public static int[] buildArray1920(int[] nums) {
 /*        int[] ans = new int[nums.length];
@@ -399,24 +356,146 @@ public class Task {
         return -1;
     }
 
+    //1. Two Sum
+    public static int[] twoSum1(int[] nums, int target) {
+        int[] result = new int[2];
+        Map<Integer, Integer> numMap = new HashMap<>();
+        for (int i = 0; i < nums.length; i++) {
+            if (numMap.containsKey(target - nums[i])) {
+                result[1] = i;
+                result[0] = numMap.get(target - nums[i]);
+            } else {
+                numMap.put(nums[i], i);
+            }
+        }
+        return result;
+    }
 
+    //13. Roman to Integer
+    public static int romanToInt13(String s) {
+        char[] sArr = s.toCharArray();
+        int length = s.length();
+        int result = 0;
+        char cur = sArr[0];
+        char prev = '0';
+        for (int i = 0; i < length; i++) {
+            switch (sArr[i]) {
+                case 'M' -> result += 1000;
+                case 'D' -> result += 500;
+                case 'C' -> result += 100;
+                case 'L' -> result += 50;
+                case 'X' -> result += 10;
+                case 'V' -> result += 5;
+                case 'I' -> result += 1;
+            }
+            cur = sArr[i];
+            if ((prev == 'C') & ((cur == 'D') | (cur == 'M'))) {
+                result -= 200;
+            }
+            if ((prev == 'X') & ((cur == 'L') | (cur == 'C'))) {
+                result -= 20;
+            }
+            if ((prev == 'I') & ((cur == 'V') | (cur == 'X'))) {
+                result -= 2;
+            }
+            prev = cur;
+        }
+        return result;
+    }
 
+    //136. Single Number
+    public static int singleNumber136(int[] nums) {
+        int result = 0;
+        for (int num : nums) {
+            result ^= num;
+        }
+        return result;
+    }
 
+    //136. Single Number
+    public static int singleNumber136_2(int[] nums) {
+        Arrays.sort(nums);
+        for (int i = 0; i < nums.length - 1; i += 2) {
+            if (nums[i] != nums[i + 1]) {
+                return nums[i];
+            }
+        }
+        return nums[nums.length - 1];
+    }
 
+    //283. Move Zeroes
+    public static int[] moveZeroes_283(int[] nums) {
+        int nonZeroCount = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] != 0) {
+                if (i != nonZeroCount) {
+                    nums[nonZeroCount] = nums[i];
+                    nums[i] = 0;
+                }
+                nonZeroCount++;
+            }
+        }
+        return nums;
+    }
 
+    //169. Majority Element
+    public static int majorityElement169(int[] nums) {
+        Map<Integer, Integer> countElemMap = new HashMap<>();
+        int maxIndex = 0;
+        for (int i = 0, count = 0, max = 0; i < nums.length; i++) {
+            if (countElemMap.containsKey(nums[i])) {
+                count = countElemMap.get(nums[i]) + 1;
+                countElemMap.replace(nums[i], count);
+                if (countElemMap.get(nums[i]) > max) {
+                    max = count;
+                    maxIndex = i;
+                }
+            } else {
+                count = 1;
+                countElemMap.put(nums[i], count);
+            }
+        }
+        return nums[maxIndex];
+    }
 
+    public static int majorityElement169_3(int[] nums) {
+        int major=nums[0], count = 1;
+        for(int i=1; i<nums.length; i++){
+            if(count==0){
+                count++;
+                major=nums[i];
+            }else if(major==nums[i]){
+                count++;
+            }else count--;
 
+        }
+        return major;
+    }
 
-
-
-
-
-
-
-
-
-
-
-
+    //242. Valid Anagram
+    public static boolean isAnagram242(String s, String t) {
+        char[] sChar = s.toCharArray();
+        char[] tChar = t.toCharArray();
+        Map<Character, Integer> sMap = new HashMap<>();
+        for (char c : sChar) {
+            if (sMap.containsKey(c)) {
+                sMap.put(c, sMap.get(c) + 1);
+            } else {
+                sMap.put(c, 1);
+            }
+        }
+        for (char c : tChar) {
+            if (sMap.containsKey(c)) {
+                if (sMap.get(c) == 1) {
+                    sMap.remove(c);
+                } else {
+                    sMap.put(c, sMap.get(c) - 1);
+                }
+            } else {
+                return false;
+            }
+        }
+        return sMap.isEmpty();
+    }
 
 }
