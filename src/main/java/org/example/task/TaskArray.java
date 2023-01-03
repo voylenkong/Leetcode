@@ -498,4 +498,21 @@ public class TaskArray {
         return sMap.isEmpty();
     }
 
+    //2011. Final Value of Variable After Performing Operations
+    public static int finalValueAfterOperations2011(String[] operations) {
+        int result = 0;
+        for (String str : operations) {
+            if (str.contains("--")) {
+                result--;
+                continue;
+            }
+            if (str.contains("++")) {
+                result++;
+                continue;
+            }
+        }
+
+        return result;
+    }
+
 }

@@ -292,6 +292,33 @@ public class TaskList {
         return maxSum;
     }
 
+    //1669. Merge In Between Linked Lists
+    public static ListNode mergeInBetween1669(ListNode list1, int a, int b, ListNode list2) {
+        ListNode firstPoint1 = list1;
+        ListNode secondPoint1 = list1;
+        ListNode firstPoint2 = list2;
+        ListNode secondPoint2 = list2;
+        int count = 0;
+
+        while (count < a - 1) {
+            firstPoint1 = firstPoint1.next;
+            secondPoint1 = secondPoint1.next;
+            count++;
+        }
+
+        while (count <= b) {
+            secondPoint1 = secondPoint1.next;
+            count++;
+        }
+
+        while (secondPoint2.next != null) {
+            secondPoint2 = secondPoint2.next;
+        }
+        secondPoint2.next = secondPoint1;
+        firstPoint1.next = firstPoint2;
+
+        return list1;
+    }
 
 
 }
