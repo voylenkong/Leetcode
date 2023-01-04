@@ -77,9 +77,12 @@ public class Run {
         ListNode list2 = new ListNode(1000, new ListNode(1001, new ListNode(1002)));
         TaskList.mergeInBetween1669(list1, 3, 4, list2);*/
 
-        String[] operations = new String[] {"--X","X++","X++"};
+        //String[] operations = new String[] {"--X","X++","X++"};
 
-        System.out.println(TaskArray.finalValueAfterOperations2011(operations));
+        //System.out.println(TaskArray.finalValueAfterOperations2011(operations));
+
+        ListNode list1 = new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(4, new ListNode(5)))));
+        TaskList.swapNodes1721(list1, 2);
 
     }
 }
