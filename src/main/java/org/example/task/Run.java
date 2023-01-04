@@ -81,7 +81,8 @@ public class Run {
 
         //System.out.println(TaskArray.finalValueAfterOperations2011(operations));
 
-        ListNode list1 = new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(4, new ListNode(5)))));
+        ListNode list1 = new ListNode(100, new ListNode(90));
+        ListNode list2 = new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(4, new ListNode(5)))));
         TaskList.swapNodes1721(list1, 2);
 
     }

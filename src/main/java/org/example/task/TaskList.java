@@ -323,33 +323,24 @@ public class TaskList {
 
     //1721. Swapping Nodes in a Linked List
     public static ListNode swapNodes1721(ListNode head, int k) {
-        int length = 0;
-        ListNode headIntermediate = head;
-        while (headIntermediate != null) {
-            length++;
-            headIntermediate = headIntermediate.next;
+        ListNode fast = head;
+        ListNode slow = head;
+
+        for (int i = 1; i < k; i++) {
+            fast = fast.next;
         }
 
-        headIntermediate = head;
-        for (int i = 0; i <= (length - k - 1); i++) {
-            headIntermediate = headIntermediate.next;
+        ListNode firstList = fast;
+        int swap = firstList.val;
+
+        while (fast.next != null) {
+            slow = slow.next;
+            fast = fast.next;
         }
-        int firstVal = 0;
-        int secondVal = headIntermediate.val;
-        headIntermediate = head;
-        for (int i = 0; i <= (length - k); i++) {
-            if (i == k - 1) {
-                firstVal = headIntermediate.val;
-                headIntermediate.val = secondVal;
-            }
-            if ((length - k) == i) {
-                headIntermediate.val = firstVal;
-            }
-            headIntermediate = headIntermediate.next;
-        }
+        firstList.val = slow.val;
+        slow.val = swap;
 
         return head;
     }
-
 
 }
