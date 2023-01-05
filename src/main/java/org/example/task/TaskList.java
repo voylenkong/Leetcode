@@ -343,4 +343,35 @@ public class TaskList {
         return head;
     }
 
+    //328. Odd Even Linked List
+    public static ListNode oddEvenList328(ListNode head) {
+        if ((head == null) || (head.next == null)) {
+            return head;
+        }
+        int i = 0;
+        ListNode last = head;
+        while (last.next != null) {
+            i++;
+            last = last.next;
+        }
+
+        ListNode current = head;
+        if (i % 2 == 0) {
+            i = (i / 2);
+        } else {
+            i = (i / 2) + 1;
+        }
+        while (i > 0) {
+            last.next = current.next;
+            current.next = current.next.next;
+            last = last.next;
+            current = current.next;
+            i--;
+        }
+
+        last.next = null;
+        return head;
+    }
+
+
 }
