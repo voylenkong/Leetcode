@@ -17,6 +17,19 @@ public class TaskArray {
         return new String(charsStr);
     }
 
+    //344. Reverse String
+    public static String reverseString344_2(String inputStr) {
+        char[] charsStr = inputStr.toCharArray();
+        Deque<Character> stack = new ArrayDeque<Character>();
+        for (char ch : charsStr) {
+            stack.push(ch);
+        }
+        for (int i = 0; i < inputStr.length(); i++) {
+            charsStr[i] = stack.pop();
+        }
+        return new String(charsStr);
+    }
+
     //541. Reverse String II
     public static String reverseStr541(String s, int k) {
         if (k > s.length()) {
