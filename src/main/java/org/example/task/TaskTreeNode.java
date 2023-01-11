@@ -39,16 +39,16 @@ public class TaskTreeNode {
     }
 
     //938. Range Sum of BST
-    int sum = 0;
     public int rangeSumBST(TreeNode root, int low, int high) {
+        int sum = 0;
         if (root == null) {
             return sum;
         }
         if ((root.val >= low) && (root.val <= high)) {
             sum += root.val;
         }
-        rangeSumBST(root.right, low, high);
-        rangeSumBST(root.left, low, high);
+        sum += rangeSumBST(root.right, low, high);
+        sum += rangeSumBST(root.left, low, high);
         return sum;
     }
 }
