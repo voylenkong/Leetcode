@@ -6,8 +6,6 @@ public class TreeNode {
     TreeNode right;
     TreeNode(int x) { val = x; }
 
-
-
     //1379. Find a Corresponding Node of a Binary Tree in a Clone of That Tree
     public final TreeNode getTargetCopy(final TreeNode original,
                                         final TreeNode cloned,

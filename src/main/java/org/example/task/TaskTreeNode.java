@@ -51,4 +51,40 @@ public class TaskTreeNode {
         sum += rangeSumBST(root.left, low, high);
         return sum;
     }
+
+    //2331. Evaluate Boolean Binary Tree
+    public boolean evaluateTree(TreeNode root) {
+        int right = 0;
+        int left = 0;
+        if ((root.val == 2) || (root.val == 3)) {
+            evaluateTree(root.right);
+            right = root.right.val;
+            evaluateTree(root.left);
+            left = root.left.val;
+            if (root.val == 2) {
+                root.val = right | left;
+            }
+            if (root.val == 3) {
+                root.val = right & left;
+            }
+        }
+        return root.val != 0;
+    }
+
+    //104. Maximum Depth of Binary Tree
+    public int maxDepth(TreeNode root) {
+        int rightDepth = 1;
+        int leftDepth = 1;
+        if (root == null) {
+            return 0;
+        }
+        rightDepth += maxDepth(root.right);
+        leftDepth += maxDepth(root.left);
+        return Math.max(rightDepth, leftDepth);
+    }
+
+
+
+
+
 }
