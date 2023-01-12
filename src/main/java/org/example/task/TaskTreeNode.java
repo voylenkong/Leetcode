@@ -83,7 +83,21 @@ public class TaskTreeNode {
         return Math.max(rightDepth, leftDepth);
     }
 
-
+    //111. Minimum Depth of Binary Tree
+    public int minDepth(TreeNode root) {
+        int rightDepth = 1;
+        int leftDepth = 1;
+        if (root == null) {
+            return 0;
+        }
+        rightDepth += minDepth(root.right);
+        leftDepth += minDepth(root.left);
+        if (((root.right != null) & (root.left !=null)) | ((root.right == null) & (root.left == null))) {
+            return Math.min(rightDepth, leftDepth);
+        } else {
+            return Math.max(rightDepth, leftDepth);
+        }
+    }
 
 
 
