@@ -99,6 +99,18 @@ public class TaskTreeNode {
         }
     }
 
+    //700. Search in a Binary Search Tree
+    TreeNode result700 = null;
+    public TreeNode searchBST(TreeNode root, int val) {
+        if ((root == null) || (root.val == val)) {
+            return root;
+        }
+        if (root.val < val) {
+            return searchBST(root.right, val);
+        } else {
+            return searchBST(root.left, val);
+        }
+    }
 
 
 }
