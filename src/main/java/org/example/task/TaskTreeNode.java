@@ -1,5 +1,8 @@
 package org.example.task;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class TaskTreeNode {
 
     public static void orderTree(TreeNode node) {
@@ -100,7 +103,6 @@ public class TaskTreeNode {
     }
 
     //700. Search in a Binary Search Tree
-    TreeNode result700 = null;
     public TreeNode searchBST(TreeNode root, int val) {
         if ((root == null) || (root.val == val)) {
             return root;
@@ -112,5 +114,35 @@ public class TaskTreeNode {
         }
     }
 
+    //94. Binary Tree Inorder Traversal
+    List<Integer> resultList = new ArrayList<>();
+    public List<Integer> inorderTraversal(TreeNode root) {
+        if (root == null) {
+            return resultList;
+        }
+        inorderTraversal(root.left);
+        resultList.add(root.val);
+        inorderTraversal(root.right);
+        return resultList;
+    }
+
+    //101. Symmetric Tree
+    public boolean isSymmetric(TreeNode root) {
+        return (root == null) || (isSymm(root.left, root.right));
+    }
+
+    public boolean isSymm(TreeNode left, TreeNode right) {
+        if ((left == null) && (right == null)) {
+            return true;
+        }
+        if ((left == null) || (right == null)) {
+            return false;
+        }
+        if (left.val == right.val) {
+            return isSymm(left.left, right.right) && isSymm(right.left, left.right);
+        } else {
+            return false;
+        }
+    }
 
 }
