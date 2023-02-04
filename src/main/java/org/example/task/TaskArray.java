@@ -1,33 +1,37 @@
 package org.example.task;
 
 import java.util.*;
+import java.util.stream.Stream;
 
 public class TaskArray {
 
     //344. Reverse String
-    public static String reverseString344(String inputStr) {
-        char[] charsStr = inputStr.toCharArray();
-        int lenOfCharStr = charsStr.length - 1;
-        char buf;
-        for (int j = lenOfCharStr, i = 0; i <= j; j--, i++) {
-            buf = charsStr[i];
-            charsStr[i] = charsStr[j];
-            charsStr[j] = buf;
+    public static String reverseString344_Array(String inputStr) {
+        char[] inputStrCh = inputStr.toCharArray();
+        for (int i = 0, j = inputStrCh.length - 1; i < j; i++, j--) {
+            char swap = inputStrCh[i];
+            inputStrCh[i] = inputStrCh[j];
+            inputStrCh[j] = swap;
         }
-        return new String(charsStr);
+        return Arrays.toString(inputStrCh);
     }
 
     //344. Reverse String
-    public static String reverseString344_2(String inputStr) {
-        char[] charsStr = inputStr.toCharArray();
-        Deque<Character> stack = new ArrayDeque<Character>();
-        for (char ch : charsStr) {
-            stack.push(ch);
+    public static String reverseString344_Stream(String inputStr) {
+        Deque<Character> reverseInputStrCh = new ArrayDeque<>();
+        inputStr.chars().forEachOrdered(c -> reverseInputStrCh.push((char)c));
+        return Stream.of(reverseInputStrCh).map(String::valueOf).reduce("", (result, c) -> result + c);
+    }
+
+    //344. Reverse String
+    private StringBuilder resultStr344 = new StringBuilder();
+
+    public String reverseString344_Recursion(String inputStr) {
+        if (inputStr.length() > 1) {
+            reverseString344_Recursion(inputStr.substring(1));
         }
-        for (int i = 0; i < inputStr.length(); i++) {
-            charsStr[i] = stack.pop();
-        }
-        return new String(charsStr);
+        this.resultStr344.append(inputStr.charAt(0));
+        return resultStr344.toString();
     }
 
     //541. Reverse String II
