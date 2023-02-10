@@ -1,6 +1,7 @@
 package org.example.task;
 
 import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Stream;
 
 public class TaskArray {
@@ -241,7 +242,6 @@ public class TaskArray {
         Collections.reverse(ans);
         return ans;
     }
-
 
     //2108. Find First Palindromic String in the Array
     public static String firstPalindrome2108(String[] words) {
@@ -528,7 +528,74 @@ public class TaskArray {
                 continue;
             }
         }
+        return result;
+    }
 
+    //771. Jewels and Stones
+    public static int numJewelsInStones771(String jewels, String stones) {
+
+        Set<Character> jewelSet = new HashSet<>();
+        jewels.chars().forEachOrdered(c -> jewelSet.add((char) c));
+
+        int result = 0;
+        char[] stonesCh = stones.toCharArray();
+
+        for (char stone : stonesCh) {
+            if (jewelSet.contains(stone)) {
+                result += 1;
+            }
+        }
+        return result;
+    }
+
+    //228. Summary Ranges
+
+    private String summaryRangesPrint(int a, int b) {
+        if (a != b) {
+            return (a + "->" + b);
+        }
+        else {
+            return String.valueOf(a);
+        }
+    }
+    public List<String> summaryRanges228(int[] nums) {
+        List<String> result = new ArrayList<>();
+        if ((nums.length > 0)) {
+            int a = nums[0];
+            int b = nums[0];
+            int prev = nums[0];
+            boolean newRange = true;
+            int len = nums.length;
+            for (int i = 1; i < len; i++) {
+                if (nums[i] != (prev + 1)) {
+                    newRange = false;
+                    b = nums[i - 1];
+                }
+                if (!newRange) {
+                    result.add(this.summaryRangesPrint(a, b));
+                    a = nums[i];
+                    newRange = true;
+                }
+                prev = nums[i];
+                if (i == len - 1) {
+                    b = nums[i];
+                }
+            }
+            result.add(this.summaryRangesPrint(a, b));
+        }
+        return result;
+    }
+
+    //268. Missing Number
+    public static int missingNumber(int[] nums) {
+        int result = 0;
+        short i = 0;
+        while (i < nums.length) {
+            result += i;
+            result -= nums[i];
+            i++;
+        }
+        result += i;
         return result;
     }
 
