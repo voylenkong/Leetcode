@@ -263,6 +263,17 @@ public class TaskArray {
         return "";
     }
 
+    //125. Valid Palindrome
+    public static boolean isPalindrome(String s) {
+        char[] charS = s.toLowerCase().replaceAll("\\W", "").replaceAll("_", "").toCharArray();
+        for (int i = 0, j = charS.length - 1; i < j; i++, j--) {
+            if (charS[i] != charS[j]) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     //1929. Concatenation of Array
     public static int[] getConcatenation1929(int[] nums) {
         int numLength = nums.length;
