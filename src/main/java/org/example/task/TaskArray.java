@@ -610,4 +610,28 @@ public class TaskArray {
         return result;
     }
 
+    //20. Valid Parentheses
+    public static boolean isValid20(String s) {
+        char[] charS = s.toCharArray();
+        Deque<Character> sStack = new ArrayDeque<>();
+        char popChar;
+        for (char c : charS) {
+            if ((c == '(') || (c == '{') || (c =='[')) {
+                sStack.push(c);
+            } else {
+                if (sStack.isEmpty()) {
+                    return false;
+                }
+                popChar = sStack.pop();
+                if (
+                        !((c == ')') & (popChar == '(')) &&
+                        !((c == '}') & (popChar == '{')) &&
+                        !((c == ']') & (popChar == '['))) {
+                    return false;
+                }
+            }
+        }
+        return sStack.isEmpty();
+    }
+
 }
