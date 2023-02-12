@@ -634,4 +634,12 @@ public class TaskArray {
         return sStack.isEmpty();
     }
 
+    //977. Squares of a Sorted Array
+    public int[] sortedSquares(int[] nums) {
+        for (int i = 0; i < nums.length; i++) {
+            nums[i] *=nums[i];
+        }
+        return Arrays.stream(nums).sorted().toArray();
+    }
+
 }
