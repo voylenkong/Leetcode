@@ -7,18 +7,31 @@ import java.util.stream.Stream;
 public class TaskArray {
 
     //344. Reverse String
-    public static String reverseString344_Array(String inputStr) {
+    public String reverseString344_Array(String inputStr) {
         char[] inputStrCh = inputStr.toCharArray();
         for (int i = 0, j = inputStrCh.length - 1; i < j; i++, j--) {
             char swap = inputStrCh[i];
             inputStrCh[i] = inputStrCh[j];
             inputStrCh[j] = swap;
         }
-        return Arrays.toString(inputStrCh);
+        return String.valueOf(inputStrCh);
+    }
+
+    //557. Reverse Words in a String III
+    public String reverseWords(String s) {
+        StringBuilder resultStrBld = new StringBuilder();
+        String[] strs = s.split(" ");
+        for (int i = 0; i < strs.length; i++) {
+            resultStrBld.append(this.reverseString344_Array(strs[i]));
+            if (i < strs.length - 1) {
+                resultStrBld.append(" ");
+            }
+        }
+        return resultStrBld.toString();
     }
 
     //344. Reverse String
-    public static String reverseString344_Stream(String inputStr) {
+    public String reverseString344_Stream(String inputStr) {
         Deque<Character> reverseInputStrCh = new ArrayDeque<>();
         inputStr.chars().forEachOrdered(c -> reverseInputStrCh.push((char)c));
         return Stream.of(reverseInputStrCh).map(String::valueOf).reduce("", (result, c) -> result + c);
@@ -641,5 +654,61 @@ public class TaskArray {
         }
         return Arrays.stream(nums).sorted().toArray();
     }
+
+    public long convertStrToLong(String str) {
+        char[] strCh = str.toCharArray();
+        long result = 0;
+        long j = 1;
+        for (int i = strCh.length - 1; i >= 0; i--) {
+            result += (strCh[i] - '0') * j;
+            j *= 10;
+        }
+        return result;
+    }
+
+    //415. Add Strings
+    public String addStrings(String num1, String num2) {
+        char[] num1Ch = num1.toCharArray();
+        char[] num2Ch = num2.toCharArray();
+        int extraRank = 0;
+        int cur = 0;
+        int i = num1Ch.length - 1;
+        int j = num2Ch.length - 1;
+        StringBuilder result = new StringBuilder();
+        while (i >= 0 && j >= 0) {
+            cur = (num1Ch[i] - '0') + (num2Ch[j] - '0') + extraRank;
+            extraRank = 0;
+            if (cur >= 10) {
+                extraRank = 1;
+                cur %= 10;
+            }
+            result.insert(0, cur);
+            i--;
+            j--;
+        }
+        if (i < 0 & j >= 0) {
+            i = j;
+            num1Ch = num2Ch;
+        }
+        while (i >= 0) {
+            if (extraRank != 0) {
+                cur = (num1Ch[i] - '0') + extraRank;
+                if (cur >= 10) {
+                    cur %= 10;
+                } else {
+                    extraRank = 0;
+                }
+                result.insert(0, cur);
+            } else {
+                result.insert(0, num1Ch[i]);
+            }
+            i--;
+        }
+        if (extraRank != 0) {
+            result.insert(0, extraRank);
+        }
+        return result.toString();
+    }
+
 
 }
