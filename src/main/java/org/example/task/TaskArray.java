@@ -711,4 +711,46 @@ public class TaskArray {
     }
 
 
+    //1446. Consecutive Characters
+    public int maxPower(String s) {
+        char[] sCh = s.toCharArray();
+        char prevCh = sCh[0];
+        int pow = 1;
+        int curPow = 1;
+        for (int i = 1; i < sCh.length; i++) {
+            if (prevCh == sCh[i]) {
+                curPow++;
+                if (pow < curPow) {
+                    pow = curPow;
+                }
+            } else {
+                prevCh = sCh[i];
+                curPow = 1;
+            }
+        }
+        return pow;
+    }
+
+    //167. Two Sum II - Input Array Is Sorted
+    public int[] twoSum(int[] numbers, int target) {
+        int[] result = new int[2];
+        int i = 0;
+        int j = numbers.length - 1;
+        while (i != j) {
+            if ((numbers[i] + numbers[j]) > target) {
+                j--;
+            }
+            else if ((numbers[i] + numbers[j]) < target) {
+                i++;
+            }
+            else if ((numbers[i] + numbers[j]) == target) {
+                result[0] = i + 1;
+                result[1] = j + 1;
+                break;
+            }
+        }
+        return result;
+    }
+
+
 }
