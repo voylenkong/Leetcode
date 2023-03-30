@@ -1,6 +1,5 @@
 Examples of Leetcode tasks
 ---
----
 
 ---
 Used technologies:
