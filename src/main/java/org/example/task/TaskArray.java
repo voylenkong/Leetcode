@@ -750,4 +750,33 @@ public class TaskArray {
         }
         return result;
     }
+
+    //350. Intersection of Two Arrays II
+    public int[] intersect(int[] nums1, int[] nums2) {
+        Arrays.sort(nums1);
+        Arrays.sort(nums2);
+
+        List<Integer> tempList = new ArrayList<>();
+        int pointer1 = 0;
+        int pointer2 = 0;
+
+        while (pointer1 < nums1.length && pointer2 < nums2.length) {
+            if (nums1[pointer1] < nums2[pointer2]) {
+                pointer1++;
+            } else if (nums1[pointer1] > nums2[pointer2]) {
+                pointer2++;
+            } else {
+                tempList.add(nums1[pointer1]);
+                pointer1++;
+                pointer2++;
+            }
+        }
+
+        int[] result = new int[tempList.size()];
+        for (int i = 0; i < tempList.size(); i++) {
+            result[i] = tempList.get(i);
+        }
+
+        return result;
+    }
 }
