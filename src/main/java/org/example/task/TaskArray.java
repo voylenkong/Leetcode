@@ -779,4 +779,27 @@ public class TaskArray {
 
         return result;
     }
+
+    //392. Is Subsequence
+    public boolean isSubsequence(String s, String t) {
+        char[] sChars = s.toCharArray();
+        char[] tChars = t.toCharArray();
+        boolean result = (s.length() == 0);
+
+        if (tChars.length != 0 && sChars.length != 0) {
+            int i = 0;
+            for (char tChar : tChars) {
+                if (sChars[i] == tChar) {
+                    i++;
+                    if (i == sChars.length) {
+                        result = true;
+                        break;
+                    }
+                }
+            }
+        }
+
+        return result;
+    }
+
 }
